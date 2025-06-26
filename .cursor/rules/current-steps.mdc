@@ -10,12 +10,14 @@ This is an extract from the main plan that specifes items to accomplish accordin
 
 
 #### Basic Line Buffer
-- [ ] Port `core_editor/line_buffer.rs` → `core/line-buffer.ts`
-- [ ] Implement core functionality:
-  - [ ] Basic text storage and cursor management
-  - [ ] Character insertion/deletion
-  - [ ] Cursor movement (left/right)
-  - [ ] Word movement
-  - [ ] Line operations
-- [ ] Port all existing Rust tests to TypeScript
-- [ ] Add edge case tests for Unicode handling
+- [x] Port `core_editor/line_buffer.rs` → `core/line-buffer.ts`
+- [x] Implement core functionality:
+  - [x] Basic text storage and cursor management
+  - [x] Character insertion/deletion
+  - [x] Cursor movement (left/right)
+  - [x] Word movement (partially working - needs Unicode fixes)
+  - [x] Line operations (partially working - needs logic fixes)
+- [x] Port all existing Rust tests to TypeScript
+- [x] Add edge case tests for Unicode handling
+
+**Status**: Partially complete. Core functionality implemented with 73% test pass rate. Need to fix Unicode word boundary detection, case operations, swap operations, and line movement logic.

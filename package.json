@@ -29,6 +29,7 @@
     "chalk": "^5.4.1",
     "clipboardy": "^4.0.0",
     "readline-sync": "^1.4.10",
+    "unicode-js": "^2.0.0",
     "zod": "^3.25.67"
   },
   "peerDependencies": {

@@ -7,6 +7,7 @@
         "chalk": "^5.4.1",
         "clipboardy": "^4.0.0",
         "readline-sync": "^1.4.10",
+        "unicode-js": "^2.0.0",
         "zod": "^3.25.67",
       },
       "devDependencies": {
@@ -460,6 +461,8 @@
     "typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
 
     "undici-types": ["undici-types@7.8.0", "", {}, "sha512-9UJ2xGDvQ43tYyVMpuHlsgApydB8ZKfVYTsLDhXkFL/6gfkp+U8xTGdh8pMJv1SpZna0zxG1DwsKZsreLbXBxw=="],
+
+    "unicode-js": ["unicode-js@2.0.0", "", {}, "sha512-yl6qclgZ9dJ16Veq8AG0o7HbolmLpkXmgkKRWJhXkjNNIaIL/E+msIXnMltV9m7+H6ai/oj/DT9uoJ+KPs48Hw=="],
 
     "uri-js": ["uri-js@4.4.1", "", { "dependencies": { "punycode": "^2.1.0" } }, "sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg=="],
 
