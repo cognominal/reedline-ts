@@ -1,0 +1,144 @@
+# Reedline TypeScript Port Project Rules
+
+## Project Overview
+This is a TypeScript port of the reedline Rust codebase. We're following a phased approach to port the entire codebase while maintaining functionality and test coverage.
+
+## Development Conventions
+
+### Code Style
+- Use TypeScript strict mode
+- Prefer ES module imports over require statements
+- Use JSDoc for all public APIs
+- Follow camelCase for variables and functions
+- Use PascalCase for classes and interfaces
+- Use UPPER_SNAKE_CASE for constants
+
+### File Organization
+- Mirror the Rust source structure where possible
+- Use kebab-case for file names
+- Group related functionality in directories
+- Keep test files alongside source files with `.test.ts` suffix
+
+### Testing Requirements
+- Port all existing Rust tests to TypeScript
+- Maintain test coverage above 90%
+- Use Jest/Vitest for testing framework
+- Write tests before implementing features (TDD)
+- Include edge cases and Unicode handling tests
+
+### Dependencies
+- Use Bun as the runtime and package manager
+- Prefer Node.js built-in modules when available
+- Use lightweight, well-maintained packages
+- Document all external dependencies
+
+### Performance Considerations
+- Optimize for JavaScript engine characteristics
+- Minimize memory allocations
+- Profile performance regularly
+- Target < 16ms input latency
+- Keep memory usage under 50MB for typical usage
+
+### Unicode Handling
+- Use Node.js built-in Unicode support
+- Implement proper grapheme cluster handling
+- Test with complex Unicode characters
+- Ensure correct cursor positioning
+
+### Terminal Compatibility
+- Support cross-platform terminal operations
+- Handle ANSI escape sequences properly
+- Test on multiple platforms
+- Gracefully handle terminal limitations
+
+## Development Workflow
+
+### Phase-Based Development
+- Follow the plan.md for phase progression
+- Complete all deliverables before moving to next phase
+- Maintain working state throughout development
+- Regular integration testing between components
+
+### Code Review Guidelines
+- Review all code changes
+- Ensure test coverage is maintained
+- Check for performance implications
+- Verify Unicode handling correctness
+- Validate terminal compatibility
+
+### Documentation Standards
+- Document all public APIs with JSDoc
+- Keep README.md updated
+- Document breaking changes
+- Provide usage examples
+- Maintain API documentation
+
+## Quality Assurance
+
+### Testing Strategy
+- Unit tests for all modules
+- Integration tests for component interactions
+- Performance benchmarks
+- Memory leak detection
+- Cross-platform compatibility tests
+
+### Code Quality
+- TypeScript strict mode compliance
+- No memory leaks
+- Comprehensive error handling
+- Proper resource cleanup
+- Security best practices
+
+### Performance Requirements
+- Input latency < 16ms
+- Memory usage < 50MB for typical usage
+- Startup time < 100ms
+- No significant performance regressions
+
+## Risk Mitigation
+
+### Technical Risks
+- Unicode handling complexity: Start simple, add complexity incrementally
+- Terminal compatibility: Test on multiple platforms early
+- Performance issues: Profile regularly and optimize bottlenecks
+- Memory leaks: Use memory profiling tools and test long-running sessions
+
+### Project Risks
+- Scope creep: Stick to the phased approach
+- Testing gaps: Maintain test coverage throughout
+- Documentation debt: Document as you go
+- Integration issues: Regular integration testing
+
+## Success Criteria
+
+### Functional Requirements
+- All core reedline functionality working
+- Full test coverage maintained
+- Performance within acceptable bounds
+- Cross-platform compatibility
+
+### Quality Requirements
+- TypeScript strict mode compliance
+- No memory leaks
+- Comprehensive documentation
+- Working examples
+
+## Current Phase
+Phase 1: Foundation & Core Infrastructure
+- Setting up project infrastructure
+- Porting core types and enums
+- Implementing basic line buffer
+- Establishing testing framework
+
+## Next Steps
+1. Set up Phase 1 project infrastructure
+2. Begin with core types and enums
+3. Implement basic line buffer with tests
+4. Establish development workflow
+5. Set up continuous integration
+
+## References
+- Original Rust codebase: ../reedline/
+- Development plan: plan.md
+- TypeScript configuration: tsconfig.json
+- Package configuration: package.json 

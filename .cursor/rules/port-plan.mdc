@@ -1,0 +1,483 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Reedline TypeScript Port Development Plan
+
+## Overview
+This plan outlines the piecemeal port of the reedline Rust codebase to TypeScript, maintaining functionality and test coverage throughout the process.
+Keep up to date the current-steps.mdc and update the current file only when all the items have been marked
+
+## Development Phases
+
+### Phase 1: Foundation & Core Infrastructure (Weeks 1-2)
+
+#### 1.1 Project Setup & Dependencies
+- [x] Set up TypeScript project with Bun
+- [x] Configure TypeScript with strict settings
+- [x] Install and configure testing framework (Jest/Vitest)
+- [x] Set up equivalent dependencies:
+  - [x] `node:readline` or `readline-sync` for terminal input
+  - [x] `chalk` or `colorette` for ANSI color support
+  - [x] `clipboardy` for clipboard operations
+  - [x] `zod` for runtime type validation
+- [x] Configure build and test scripts
+- [x] Set up linting and formatting
+
+#### 1.2 Core Types & Enums
+- [ ] Port `enums.rs` → `types.ts`:
+  - [ ] `Signal` enum (Success, CtrlC, CtrlD)
+  - [ ] `EditCommand` enum (all editing actions)
+  - [ ] `ReedlineEvent` enum (all events)
+  - [ ] `EditType` and `UndoBehavior` enums
+- [ ] Create TypeScript interfaces for all data structures
+- [ ] Add comprehensive JSDoc documentation
+- [ ] Write unit tests for all enums and types
+
+#### 1.3 Basic Line Buffer
+- [ ] Port `core_editor/line_buffer.rs` → `core/line-buffer.ts`
+- [ ] Implement core functionality:
+  - [ ] Basic text storage and cursor management
+  - [ ] Character insertion/deletion
+  - [ ] Cursor movement (left/right)
+  - [ ] Word movement
+  - [ ] Line operations
+- [ ] Port all existing Rust tests to TypeScript
+- [ ] Add edge case tests for Unicode handling
+
+#### 1.4 Testing Infrastructure
+- [ ] Set up test framework with Jest/Vitest
+- [ ] Create test utilities for common operations
+- [ ] Set up test data fixtures
+- [ ] Configure test coverage reporting
+- [ ] Create integration test helpers
+
+**Deliverables:**
+- Working TypeScript project setup
+- Core types and enums with tests
+- Basic line buffer with full test coverage
+- Testing infrastructure ready for all phases
+
+---
+
+### Phase 2: Core Editor & Edit Stack (Weeks 3-4)
+
+#### 2.1 Edit Stack
+- [ ] Port `core_editor/edit_stack.rs` → `core/edit-stack.ts`
+- [ ] Implement undo/redo functionality
+- [ ] Track edit operations for history
+- [ ] Add comprehensive tests for undo/redo scenarios
+- [ ] Test edge cases and memory management
+
+#### 2.2 Editor Core
+- [ ] Port `core_editor/editor.rs` → `core/editor.ts`
+- [ ] Basic editor operations
+- [ ] Command execution
+- [ ] Event handling
+- [ ] Integration with line buffer and edit stack
+- [ ] Add performance benchmarks
+
+#### 2.3 Clip Buffer
+- [ ] Port `core_editor/clip_buffer.rs` → `core/clip-buffer.ts`
+- [ ] Local clipboard operations
+- [ ] Cut/copy/paste functionality
+- [ ] Integration with system clipboard (optional)
+- [ ] Test clipboard persistence and state management
+
+**Deliverables:**
+- Working edit stack with undo/redo
+- Core editor with command execution
+- Local clipboard functionality
+- Integration tests between core components
+
+---
+
+### Phase 3: Edit Modes (Weeks 5-6)
+
+#### 3.1 Base Edit Mode
+- [ ] Port `edit_mode/base.rs` → `edit-modes/base.ts`
+- [ ] Abstract edit mode interface
+- [ ] Common functionality
+- [ ] Event handling abstractions
+- [ ] Test mode switching and inheritance
+
+#### 3.2 Emacs Mode
+- [ ] Port `edit_mode/emacs.rs` → `edit-modes/emacs.ts`
+- [ ] Emacs-style keybindings
+- [ ] Default key mappings
+- [ ] Custom keybinding support
+- [ ] Test all default bindings
+
+#### 3.3 Vi Mode
+- [ ] Port `edit_mode/vi/` → `edit-modes/vi/`
+- [ ] Vi insert and normal modes
+- [ ] Vi command parsing
+- [ ] Vi motion commands
+- [ ] Test mode transitions and commands
+
+**Deliverables:**
+- Working edit mode system
+- Emacs mode with default bindings
+- Vi mode with insert/normal modes
+- Comprehensive keybinding tests
+
+---
+
+### Phase 4: History System (Weeks 7-8)
+
+#### 4.1 Base History
+- [ ] Port `history/base.rs` → `history/base.ts`
+- [ ] Abstract history interface
+- [ ] Basic history operations
+- [ ] History search functionality
+- [ ] Test history operations
+
+#### 4.2 File-Backed History
+- [ ] Port `history/file_backed.rs` → `history/file-backed.ts`
+- [ ] Persistent history storage
+- [ ] File I/O operations
+- [ ] History file format compatibility
+- [ ] Test file persistence and recovery
+
+#### 4.3 History Cursor
+- [ ] Port `history/cursor.rs` → `history/cursor.ts`
+- [ ] History navigation
+- [ ] Search functionality
+- [ ] History filtering
+- [ ] Test navigation and search
+
+**Deliverables:**
+- Working history system
+- File-backed persistent history
+- History navigation and search
+- History integration tests
+
+---
+
+### Phase 5: Completion System (Weeks 9-10)
+
+#### 5.1 Base Completion
+- [ ] Port `completion/base.rs` → `completion/base.ts`
+- [ ] Abstract completion interface
+- [ ] Completion suggestions
+- [ ] Completion filtering
+- [ ] Test completion interface
+
+#### 5.2 Default Completer
+- [ ] Port `completion/default.rs` → `completion/default.ts`
+- [ ] Basic word completion
+- [ ] Command completion
+- [ ] Fuzzy matching
+- [ ] Test completion accuracy
+
+#### 5.3 History Completion
+- [ ] Port `completion/history.rs` → `completion/history.ts`
+- [ ] History-based completions
+- [ ] Smart history matching
+- [ ] Test history completion accuracy
+
+**Deliverables:**
+- Working completion system
+- Default completer with fuzzy matching
+- History-based completions
+- Completion integration tests
+
+---
+
+### Phase 6: Menu System (Weeks 11-12)
+
+#### 6.1 Menu Base
+- [ ] Port `menu/menu_functions.rs` → `menu/menu-functions.ts`
+- [ ] Abstract menu interface
+- [ ] Menu operations
+- [ ] Menu navigation
+- [ ] Test menu operations
+
+#### 6.2 Columnar Menu
+- [ ] Port `menu/columnar_menu.rs` → `menu/columnar-menu.ts`
+- [ ] Column-based menu display
+- [ ] Menu layout algorithms
+- [ ] Column sizing
+- [ ] Test menu display
+
+#### 6.3 IDE Menu
+- [ ] Port `menu/ide_menu.rs` → `menu/ide-menu.ts`
+- [ ] IDE-style completion menu
+- [ ] Rich completion display
+- [ ] Menu item formatting
+- [ ] Test IDE menu functionality
+
+#### 6.4 List Menu
+- [ ] Port `menu/list_menu.rs` → `menu/list-menu.ts`
+- [ ] Simple list-based menu
+- [ ] List navigation
+- [ ] List filtering
+- [ ] Test list menu operations
+
+**Deliverables:**
+- Working menu system
+- Columnar menu with layout
+- IDE-style completion menu
+- List menu for simple selections
+- Menu integration tests
+
+---
+
+### Phase 7: Painting & Display (Weeks 13-14)
+
+#### 7.1 Painter
+- [ ] Port `painting/painter.rs` → `painting/painter.ts`
+- [ ] Terminal output rendering
+- [ ] ANSI escape sequences
+- [ ] Screen management
+- [ ] Test rendering accuracy
+
+#### 7.2 Styled Text
+- [ ] Port `painting/styled_text.rs` → `painting/styled-text.ts`
+- [ ] Text styling and formatting
+- [ ] Color support
+- [ ] Style inheritance
+- [ ] Test styling functionality
+
+#### 7.3 Prompt Lines
+- [ ] Port `painting/prompt_lines.rs` → `painting/prompt-lines.ts`
+- [ ] Prompt rendering
+- [ ] Multi-line prompt support
+- [ ] Prompt customization
+- [ ] Test prompt rendering
+
+**Deliverables:**
+- Working painting system
+- Styled text with colors
+- Multi-line prompt support
+- Terminal rendering tests
+
+---
+
+### Phase 8: Advanced Features (Weeks 15-16)
+
+#### 8.1 Highlighter System
+- [ ] Port `highlighter/` → `highlighter/`
+- [ ] Syntax highlighting
+- [ ] Custom highlighters
+- [ ] Highlighter chaining
+- [ ] Test highlighting accuracy
+
+#### 8.2 Hinter System
+- [ ] Port `hinter/` → `hinter/`
+- [ ] Fish-style history hints
+- [ ] Auto-suggestions
+- [ ] Hint styling
+- [ ] Test hint accuracy
+
+#### 8.3 Validator System
+- [ ] Port `validator/` → `validator/`
+- [ ] Input validation
+- [ ] Multi-line validation
+- [ ] Custom validators
+- [ ] Test validation logic
+
+**Deliverables:**
+- Working highlighter system
+- History hints and auto-suggestions
+- Input validation system
+- Advanced feature integration tests
+
+---
+
+### Phase 9: Terminal Extensions (Weeks 17-18)
+
+#### 9.1 Terminal Extensions
+- [ ] Port `terminal_extensions/` → `terminal-extensions/`
+- [ ] Bracketed paste support
+- [ ] Kitty protocol support
+- [ ] Terminal capability detection
+- [ ] Test terminal compatibility
+
+#### 9.2 External Printer
+- [ ] Port `external_printer.rs` → `external-printer.ts`
+- [ ] Thread-safe printing
+- [ ] Async output handling
+- [ ] Printer queuing
+- [ ] Test async printing
+
+**Deliverables:**
+- Terminal extension support
+- Async external printing
+- Terminal compatibility tests
+
+---
+
+### Phase 10: Main Engine & Integration (Weeks 19-20)
+
+#### 10.1 Main Engine
+- [ ] Port `engine.rs` → `engine.ts`
+- [ ] Main Reedline engine
+- [ ] Event loop
+- [ ] Integration of all components
+- [ ] Performance optimization
+
+#### 10.2 Public API
+- [ ] Port `lib.rs` → `index.ts`
+- [ ] Public interface
+- [ ] Factory functions
+- [ ] Configuration options
+- [ ] API documentation
+
+#### 10.3 Examples
+- [ ] Port examples from `examples/` → `examples/`
+- [ ] Basic usage examples
+- [ ] Advanced feature demonstrations
+- [ ] Integration examples
+- [ ] Performance examples
+
+**Deliverables:**
+- Complete Reedline TypeScript implementation
+- Full API documentation
+- Working examples
+- Performance benchmarks
+- Integration test suite
+
+---
+
+## Testing Strategy
+
+### Unit Tests
+- [ ] Port all existing Rust tests to TypeScript
+- [ ] Maintain test coverage for each module
+- [ ] Use parameterized tests for edge cases
+- [ ] Test Unicode handling thoroughly
+- [ ] Test performance characteristics
+
+### Integration Tests
+- [ ] Test component interactions
+- [ ] End-to-end functionality tests
+- [ ] Performance benchmarks
+- [ ] Memory usage tests
+- [ ] Cross-platform compatibility tests
+
+### Test Porting Approach
+1. [ ] Identify test files in Rust codebase
+2. [ ] Convert Rust test syntax to Jest/Vitest
+3. [ ] Adapt test data and assertions
+4. [ ] Ensure equivalent test coverage
+5. [ ] Add TypeScript-specific tests
+
+---
+
+## Key Technical Considerations
+
+### Unicode Handling
+- [ ] Use Node.js built-in Unicode support
+- [ ] Implement grapheme cluster handling
+- [ ] Ensure proper cursor positioning
+- [ ] Test with complex Unicode characters
+
+### Terminal Compatibility
+- [ ] Use `node:readline` or similar for input
+- [ ] Implement ANSI escape sequence handling
+- [ ] Support different terminal types
+- [ ] Test cross-platform compatibility
+
+### Performance
+- [ ] Optimize for JavaScript engine characteristics
+- [ ] Use efficient data structures
+- [ ] Minimize memory allocations
+- [ ] Profile and optimize bottlenecks
+
+### Type Safety
+- [ ] Leverage TypeScript's type system
+- [ ] Use strict type checking
+- [ ] Implement runtime validation where needed
+- [ ] Maintain type safety throughout
+
+---
+
+## Development Workflow
+
+### Incremental Development
+- [ ] Start with core, testable components
+- [ ] Build up complexity gradually
+- [ ] Maintain working state throughout
+- [ ] Regular integration testing
+
+### Test-Driven Development
+- [ ] Write tests before implementation
+- [ ] Port tests alongside code
+- [ ] Ensure regression prevention
+- [ ] Maintain high test coverage
+
+### Documentation
+- [ ] Maintain JSDoc comments
+- [ ] Create usage examples
+- [ ] Document API changes
+- [ ] Keep README updated
+
+### Quality Assurance
+- [ ] Regular code reviews
+- [ ] Performance testing
+- [ ] Memory leak detection
+- [ ] Cross-platform testing
+
+---
+
+## Success Criteria
+
+### Functional Requirements
+- [ ] All core reedline functionality working
+- [ ] Full test coverage maintained
+- [ ] Performance within acceptable bounds
+- [ ] Cross-platform compatibility
+
+### Quality Requirements
+- [ ] TypeScript strict mode compliance
+- [ ] No memory leaks
+- [ ] Comprehensive documentation
+- [ ] Working examples
+
+### Performance Requirements
+- [ ] Input latency < 16ms
+- [ ] Memory usage < 50MB for typical usage
+- [ ] Startup time < 100ms
+- [ ] No significant performance regressions
+
+---
+
+## Risk Mitigation
+
+### Technical Risks
+- **Unicode handling complexity**: Start with basic Unicode support, add complexity incrementally
+- **Terminal compatibility**: Test on multiple platforms early
+- **Performance issues**: Profile regularly and optimize bottlenecks
+- **Memory leaks**: Use memory profiling tools and test long-running sessions
+
+### Project Risks
+- **Scope creep**: Stick to the phased approach
+- **Testing gaps**: Maintain test coverage throughout
+- **Documentation debt**: Document as you go
+- **Integration issues**: Regular integration testing
+
+---
+
+## Timeline Summary
+
+- **Phase 1-2**: Core infrastructure (4 weeks)
+- **Phase 3-4**: Edit modes and history (4 weeks)
+- **Phase 5-6**: Completion and menus (4 weeks)
+- **Phase 7-8**: Painting and advanced features (4 weeks)
+- **Phase 9-10**: Extensions and integration (4 weeks)
+
+**Total Duration**: 20 weeks (5 months)
+
+---
+
+## Next Steps
+
+1. [ ] Set up Phase 1 project infrastructure
+2. [ ] Begin with core types and enums
+3. [ ] Implement basic line buffer with tests
+4. [ ] Establish development workflow
+5. [ ] Set up continuous integration
+
+This plan provides a structured approach to porting the reedline Rust codebase to TypeScript while maintaining functionality and test coverage throughout the process. 

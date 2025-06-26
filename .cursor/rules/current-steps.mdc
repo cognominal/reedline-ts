@@ -1,0 +1,24 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Reedline TypeScript Port Development Sort term Plan
+
+
+This is a extract of port-plan.mdc that represent the steps we are currently implementing.
+Implement items one by one and mark them as done when done. Ask for confirmation before proceeding to the next item
+
+Update port-plan.mdc only when all items are done.
+Then replace the #### .mdc section here by the next one in port-plan.mdc
+
+
+#### Core Types & Enums
+- [ ] Port `enums.rs` → `types.ts`:
+  - [ ] `Signal` enum (Success, CtrlC, CtrlD)
+  - [ ] `EditCommand` enum (all editing actions)
+  - [ ] `ReedlineEvent` enum (all events)
+  - [ ] `EditType` and `UndoBehavior` enums
+- [ ] Create TypeScript interfaces for all data structures
+- [ ] Add comprehensive JSDoc documentation
+- [ ] Write unit tests for all enums and types

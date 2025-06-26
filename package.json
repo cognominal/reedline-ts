@@ -1,0 +1,37 @@
+{
+  "name": "reedline-ts",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "dev": "bun run --watch index.ts",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch",
+    "test:ui": "vitest --ui",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write .",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.29.0",
+    "@types/bun": "latest",
+    "@types/readline-sync": "^1.4.8",
+    "@typescript-eslint/eslint-plugin": "^8.35.0",
+    "@typescript-eslint/parser": "^8.35.0",
+    "eslint": "^9.29.0",
+    "prettier": "^3.6.1",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "clipboardy": "^4.0.0",
+    "readline-sync": "^1.4.10",
+    "zod": "^3.25.67"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
