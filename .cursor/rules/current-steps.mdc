@@ -5,23 +5,17 @@ alwaysApply: true
 ---
 # Reedline TypeScript Port Development Short-term workflow
 
-This is an extract from the main plan that specify the short term workflow
+This is an extract from the main plan that specifes items to accomplish according to the short term workflow defined in step-workflow.mdc
 
-**Workflow:**
-- Implement items one by one
-- Mark items as done when completed
-- Ask for confirmation before moving to next item
-- Write a review of the item just implemented in `/review` folder with numbered prefixes
-- when all items are complete
-    - Update the main plan in port-plane.mdc only 
-    - Replace the current section below with the next one from the main plan
 
-#### Core Types & Enums
-- [x] Port `enums.rs` → `types.ts`:
-  - [x] `Signal` enum (Success, CtrlC, CtrlD)
-  - [x] `EditCommand` enum (all editing actions)
-  - [x] `ReedlineEvent` enum (all events)
-  - [x] `EditType` and `UndoBehavior` enums
-- [ ] Create TypeScript interfaces for all data structures
-- [ ] Add comprehensive JSDoc documentation
-- [ ] Write unit tests for all enums and types
+
+#### Basic Line Buffer
+- [ ] Port `core_editor/line_buffer.rs` → `core/line-buffer.ts`
+- [ ] Implement core functionality:
+  - [ ] Basic text storage and cursor management
+  - [ ] Character insertion/deletion
+  - [ ] Cursor movement (left/right)
+  - [ ] Word movement
+  - [ ] Line operations
+- [ ] Port all existing Rust tests to TypeScript
+- [ ] Add edge case tests for Unicode handling

@@ -1,0 +1,18 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+
+**Workflow:**
+- Implement items one by one
+- Mark items as done when completed
+- Ask for confirmation before moving to next item
+- Write a review of the item just implemented in `/review` folder with numbered prefixes
+- when all items are complete
+    - Update the main plan in port-plane.mdc 
+    - Replace the current section below with the next one from the main plan
+
+***Beware:**
+-At each step, the generated .ts files must be type correct with no lint error    
